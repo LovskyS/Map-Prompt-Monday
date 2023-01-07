@@ -7,7 +7,6 @@ library(MetBrewer)        # Palette of colors
 library(patchwork)        # Allows multiple plots in the same canvas 
 
 # ----- This section loads the shp of the Provinces of Ecuador ----- # 
-
 bpe <- st_read("Administrative Division Provincias/nxprovincias.shp")
   # Boundaries Provinces Ecuador
 
@@ -17,13 +16,11 @@ bpce <- bpe[-c(25,20), (2:3)]
 
 
 # ----- This section loads the normalize data from Excel  ----- # 
-
 len <- read_excel("Lenguas por provincias.xlsx", sheet = "normalizedTable")
   # lenguages normalized 
 
 
 # ----- This section merge the two data frames (df) ----- # 
-
 colnames(bpce)[2] <- "Provincias"
 colnames(len)[1] <- "Provincias"
   # Set the colnames of both df to "Provincias" to merge
@@ -36,7 +33,6 @@ df <- merge(bpce, len, by = "Provincias")
 
 
 # ----- Thi section plot the map ----- # 
-
 leng1 <- ggplot(data=df)+
   geom_sf(aes(fill=AIngae), color="white")+
     # Fill the object in the map with the column "AIngae"
